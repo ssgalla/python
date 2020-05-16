@@ -268,6 +268,9 @@ df = df.drop(labels=[17])
 insert = df['js-score'] = np.array([71.0, 95.0, 88.0, 79.0, 91.0, 91.0, 80.0])
 insert
 #print(df)
+total = df['total-score'] = 0
+total
+#print(df)
 #####
 
 
@@ -280,5 +283,16 @@ insert
 #####
 
 
-##### deleting columns and data
+##### deleting columns and data generic method
+#
+del df['total-score']
+# you can also use .pop() to remove a column
+#df.pop('total-score)
+#print(df)
+#####
 
+
+##### removing columns 2 using .drop()
+df = df.drop(labels='age', axis=1)
+#print(df)
+#####
