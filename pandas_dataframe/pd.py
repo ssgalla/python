@@ -5,10 +5,10 @@
 # 4. Inserting and Deleting data (Line 252)
 # 5. Applying Arithmetic Operations (Line 301)
 # 6. Applying NumPy and SciPy Functions (Line 320)
-# 7. Sorting a Panda Dataframe
-# 8. Filtering Data
-# 9. Determining Data Statistics
-# 10. Handling Missing Data
+# 7. Sorting a Panda Dataframe (Line 342)
+# 8. Filtering Data (Line 357)
+# 9. Determining Data Statistics (Line 382)
+# 10. Handling Missing Data (Line 404)
 # 11. Iterating Over a Panda Dataframe
 # 12. Working with Time Series
 # 13. Plotting with Panda Dataframes
@@ -317,4 +317,88 @@ df['total'] =\
 #####
 
 
-########## 6. APPLYING NUMPY AND SCIPY FUNCTIONS
+########## 6. APPLYING NUMPY AND SCIPY FUNCTIONS ##########
+##### using series or df objects as arguments instead of arrays example using numpy.average()
+#
+score = df.iloc[:, 2:5]
+#print(score)
+# work out the average of the selection
+averagedf = np.average(score, axis=1, weights=[0.4, 0.3, 0.3])
+#print(averagedf)
+#####
+
+
+##### append new column to df using .average()
+#
+# delete current total column so we can insert new one
+del df['total']
+#print(df)
+# appending new column using .average()
+df['total'] = np.average(df.iloc[:, 2:5], axis=1, weights=[0.4, 0.3, 0.3])
+#print(df)
+#####
+
+
+########## 7. SORTING A PANDA DATAFRAME ##########
+##### sorting a panda df using sort_values()
+#
+# sort by single column
+sort = df.sort_values(by='js-score', ascending=False)
+sort
+#print(df)
+
+# sort by multiple columns
+sortmultiple = df.sort_values(by=['total', 'py-score'], ascending=[False, False])
+sortmultiple
+#print(df)
+#####
+
+
+########## 8. FILTERING DATA ##########
+##### using booleans to filter data with operators
+#
+filter_ = df['django-score'] >= 80
+#print(filter_)
+# by using filter_ as a parameter for df we can view the data
+#print(df[filter_])
+#####
+
+
+##### creating powerful expressions by combining logical operators
+##### the following operators are available (NOT ~, AND &, OR | and XOR ^)
+#
+logexpression = df[(df['py-score'] >= 80) & (df['js-score'] >= 80)]
+#print(logexpression)
+#####
+
+
+##### using numpy logical routines
+##### .where() can be used to filter data and or replace values in the positions where the provided condition isn't satisfied
+#
+#df['django-score'].where(cond=df['django-score'] >= 80, other=0.0)
+#####
+
+
+########## 9. DETERMINING DATA STATISTICS ##########
+##### get basic statistice for numerical columns of a panda df with .describe()
+#
+num_stats = df.describe()
+#print(num_stats)
+#####
+
+
+##### getting other statistical data using functions on df
+#
+overall_mean = df.mean()
+pyscore_mean = df['py-score'].mean()
+overall_standard_deviation = df.std()
+pyscore_standard_deviation = df['py-score'].std()
+
+#print(overall_mean)
+#print(pyscore_mean)
+#print(overall_standard_deviation)
+#print(pyscore_standard_deviation)
+#####
+
+
+########## 10. HANDLING MISSING DATA ##########
