@@ -1,9 +1,27 @@
+# Contents
+# 1. Creating a Panda dataframe (Line 24)
+# 2. Retrieving Labels and Data (Line 142)
+# 3. Accessing and Modifying data (Line 190)
+# 4. Inserting and Deleting data
+# 5. Applying Arithmetic Operations
+# 6. Applying NumPy and SciPy Functions
+# 7. Sorting a Panda Dataframe
+# 8. Filtering Data
+# 9. Determining Data Statistics
+# 10. Handling Missing Data
+# 11. Iterating Over a Panda Dataframe
+# 12. Working with Time Series
+# 13. Plotting with Panda Dataframes
+
+
 # import panda module as abbreviation pd
 import pandas as pd
 
 # import numpy module as abbreviation np
 import numpy as np
 
+
+########## 1.CREATING PANDA DATAFRAMES ##########
 ##### dictionary containing data
 #
 data = {
@@ -121,7 +139,7 @@ arr[0, 0] = 1000
 read_csv = pd.read_csv('data.csv', index_col=0)
 #print(read_csv)
 
-
+########## 2.RETRIEVING LABELS AND DATA ##########
 ##### retrieve dataframes row labels with .index and column labels with .columns - lastly find column name of single column by index
 #
 #print(df.index)
@@ -142,4 +160,47 @@ read_csv = pd.read_csv('data.csv', index_col=0)
 ##### sometimes you want to extract data from  dataframes without its label you can do this by using .to_numpy() or .values:
 #
 #df.to_numpy()
+#####
+
+
+##### how to find the data type of each column
+#
+#print(df.dtypes)
+#print(df.dtypes[1])
+#####
+
+
+##### how to modify data type of individual columns
+#
+df_ = df.astype(dtype={'age': np.int32, 'py-score': np.float32})
+#print(df_.dtypes)
+#####
+
+
+##### finding dataframe size
+##### using the .ndim, .size and .shape functions we can return the number of dimensions, number of data values across each dimension and total number of data values (we can also check memory usage by column .memory_usage())
+#
+#print(df_.ndim)
+#print(df_.size)
+#print(df_.shape)
+#print(df_.memory_usage())
+#####
+
+
+########## 3.ACCESSING AND MODIFYING DATA ##########
+##### accessing data by using its column name as a key and secondly by using its row as a label 
+#
+#print(df['name'])
+#print(df.loc[101])
+# instead of using .loc() we can also use .iloc() this will return results by its integer index instead both are acceptable 
+#print(df.iloc[0])
+#####
+
+
+##### accessors available in panda
+##### in total four accessors are available these are .loc[], .iloc[], .at[], .iat[] out of these he first two are particularly powerful which support slicing and numpy style indexing
+# you can use this slicing method to access a column in panda
+#
+#print(df.loc[:, 'city'])
+#print(df.iloc[:, 1])
 #####
