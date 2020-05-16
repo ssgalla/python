@@ -3,8 +3,8 @@
 # 2. Retrieving Labels and Data (Line 142)
 # 3. Accessing and Modifying data (Line 190)
 # 4. Inserting and Deleting data (Line 252)
-# 5. Applying Arithmetic Operations
-# 6. Applying NumPy and SciPy Functions
+# 5. Applying Arithmetic Operations (Line 301)
+# 6. Applying NumPy and SciPy Functions (Line 320)
 # 7. Sorting a Panda Dataframe
 # 8. Filtering Data
 # 9. Determining Data Statistics
@@ -296,3 +296,25 @@ del df['total-score']
 df = df.drop(labels='age', axis=1)
 #print(df)
 #####
+
+
+########## 5. APPLYING ARITHMETIC OPERATIONS ##########
+##### applying basic arithmetic operators
+#
+# addition
+addition = df['py-score'] + df['js-score']
+# divison
+division = df['py-score'] / 100
+#print(addition)
+#print(division)
+#####
+
+
+##### using linear combination on df
+df['total'] =\
+     0.4 * df['py-score'] + 0.3 * df['django-score'] + 0.3 * df['js-score']
+#print(df)
+#####
+
+
+########## 6. APPLYING NUMPY AND SCIPY FUNCTIONS
