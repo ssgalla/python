@@ -402,3 +402,37 @@ pyscore_standard_deviation = df['py-score'].std()
 
 
 ########## 10. HANDLING MISSING DATA ##########
+##### example of a dataframe with a missing value or nan
+#
+df_ = pd.DataFrame({'x': [1, 2, np.nan, 4]})
+#print(df_)
+#####
+
+
+##### calculating with missing data
+##### many panda methods will omit nan values when performing calculations unless they are explicitly instructed not to
+##### in the below example the first one will omit the nan value automatically but see the second example outputs nan because we included the missing value with the skipna parameter
+#
+notwithnan = df_.mean()
+withnan = df_.mean(skipna=False)
+#print(notwithnan)
+#print(withnan)
+#####
+
+
+##### filling missing data 
+#
+# fill missing value with 0 
+df_.fillna(value=0)
+# fill missing value with value directly above it
+#df_.fillna(method='ffill')
+# fill missing value with value directly below it
+#df_.fillna(method='bfill')
+#####
+
+
+##### using interpolate on missing values
+#
+#interpolate = df_.interpolate()
+#interpolate
+#####
