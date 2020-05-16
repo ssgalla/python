@@ -2,7 +2,7 @@
 # 1. Creating a Panda dataframe (Line 24)
 # 2. Retrieving Labels and Data (Line 142)
 # 3. Accessing and Modifying data (Line 190)
-# 4. Inserting and Deleting data
+# 4. Inserting and Deleting data (Line 252)
 # 5. Applying Arithmetic Operations
 # 6. Applying NumPy and SciPy Functions
 # 7. Sorting a Panda Dataframe
@@ -204,3 +204,81 @@ df_ = df.astype(dtype={'age': np.int32, 'py-score': np.float32})
 #print(df.loc[:, 'city'])
 #print(df.iloc[:, 1])
 #####
+
+
+##### using accessors to access specific data using slicing
+##### when using slicing on a piece of data do not use tuples as these are reserved for representing multiple dimensions in numpy and pandas aswell as hierarchial, multi-level and indexing pandas
+#
+#print(df.loc[11:15, ['name', 'city']])
+#print(df.iloc[1:6, [0, 1]])
+# this can be used to get a collection of data and skipping specific columns if necessary
+#print(df.iloc[1:6:2, 0])
+#####
+
+
+##### alternative method to use slicing in panda & numpy
+##### instead of using the built in slicing contstruct we can also use slice(), numpy.s[] or pd.IndexSlice[]
+#
+#print(df.iloc[slice(1, 6, 2), 0])
+#print(df.iloc[np.s_[1:6:2], 0])
+#print(df.iloc[pd.IndexSlice[1:6:2], 0])
+#####
+
+
+##### accessing single items
+##### when you only require a single item panda recommends using .at[] or .iat[]
+#
+#print(df.at[1, 'name'])
+#print(df.iat[2, 0])
+#####
+
+
+##### using accessors to modify parts of a panda dataframe by passing it a python sequence, numpy array or single value
+#
+#print(df.loc[:, 'py-score'])
+#df.loc[:104, ' py-score'] = [40, 50, 60, 70]
+#df.loc[105:, 'py-score'] = 0
+#print(df['py-score'])
+#####
+
+
+##### using negative indices with .iloc[] to access or modify data
+#
+df.iloc[:, -1] = np.array([88.0, 79.0, 81.0, 80.0, 68.0, 61.0, 84.0])
+#print(df['py-score'])
+#####
+
+
+########## 4. INSERTING AND DELETING ROWS ##########
+##### inserting and deleting rows of a list
+##### after creating the object john we can add it to our df using .append() we can then remove it with a single call .drop()
+#
+john = pd.Series(data=['John', 'Boston', 34, 79], index=df.columns, name=17)
+john
+#print(john.name)
+df = df.append(john)
+#print(df)
+df = df.drop(labels=[17])
+#print(df)
+#####
+
+
+##### inserting columns generic method
+#
+insert = df['js-score'] = np.array([71.0, 95.0, 88.0, 79.0, 91.0, 91.0, 80.0])
+insert
+#print(df)
+#####
+
+
+##### inserting columns using .insert()
+##### using this function allows you to tell the dataframe where to place your new column
+#
+insert = df.insert(loc=4, column='django-score', value=np.array([86.0, 81.0, 78.0, 88.0, 74.0, 70.0, 81.0]))
+insert
+#print(df)
+#####
+
+
+##### deleting columns and data
+
