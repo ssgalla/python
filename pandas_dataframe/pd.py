@@ -1,17 +1,17 @@
 # Contents
-# 1. Creating a Panda dataframe (Line 24)
-# 2. Retrieving Labels and Data (Line 142)
-# 3. Accessing and Modifying data (Line 190)
-# 4. Inserting and Deleting data (Line 252)
-# 5. Applying Arithmetic Operations (Line 301)
-# 6. Applying NumPy and SciPy Functions (Line 320)
-# 7. Sorting a Panda Dataframe (Line 342)
-# 8. Filtering Data (Line 357)
-# 9. Determining Data Statistics (Line 382)
-# 10. Handling Missing Data (Line 404)
-# 11. Iterating Over a Panda Dataframe
-# 12. Working with Time Series
-# 13. Plotting with Panda Dataframes
+# 1. Creating a Panda dataframe (Line 26)
+# 2. Retrieving Labels and Data (Line 144)
+# 3. Accessing and Modifying data (Line 192)
+# 4. Inserting and Deleting data (Line 254)
+# 5. Applying Arithmetic Operations (Line 303)
+# 6. Applying NumPy and SciPy Functions (Line 322)
+# 7. Sorting a Panda Dataframe (Line 344)
+# 8. Filtering Data (Line 359)
+# 9. Determining Data Statistics (Line 384)
+# 10. Handling Missing Data (Line 406)
+# 11. Iterating Over a Panda Dataframe (Line 449)
+# 12. Working with Time Series (Line 466)
+# 13. Plotting with Panda Dataframes (Line 506)
 
 
 # import panda module as abbreviation pd
@@ -20,6 +20,8 @@ import pandas as pd
 # import numpy module as abbreviation np
 import numpy as np
 
+# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 ########## 1.CREATING PANDA DATAFRAMES ##########
 ##### dictionary containing data
@@ -442,3 +444,77 @@ df_.fillna(value=0)
 #
 #df_.dropna()
 #####
+
+
+########## 11. ITERATING OVER A PANDAS DATAFRAME ##########
+##### how to iterate over a dataframe using .items(), .iteritems(), .iterrows() and .itertuples()
+#
+# .items() and .iteritems()
+#for col_label, col in df.iteritems():
+#     print(col_label, col, sep='\n', end='\n\n')
+#
+# .iterrows()
+#for row_labels, row in df.iterrows():
+#     print(row_labels, row, sep='\n', end='\n\n')
+#
+# .itertuples()
+#for row in df.loc[;, ["name", "city", "total"]].itertuples():
+#     print(row)
+#####
+
+
+########## 12. WORKING WITH TIME SERIES ##########
+##### creating dataframes with time-series labels
+##### hourly temperatures for a 24 hour time period time-series example
+#
+temp_c = [ 8.0,  7.1,  6.8,  6.4,  6.0,  5.4,  4.8,  5.0,
+           9.1, 12.8, 15.3, 19.1, 21.2, 22.1, 22.4, 23.1,
+           21.0, 17.9, 15.5, 14.4, 11.9, 11.0, 10.2,  9.1]
+
+# create hourly date and time range to match temperature
+dt = pd.date_range(start='2019-10-27 00:00:00.0', periods = 24, freq='H')
+#print(dt)
+
+# create dataframe combining temperature and date time stamps
+temp = pd.DataFrame(data={'temp_c': temp_c}, index=dt)
+#print(temp)
+#####
+
+
+##### indexing and slicking time-series
+#
+slicing_temp_data = temp['2019-10-27 05':'2019-10-27 14']
+#print(slicing_temp_data)
+#####
+
+
+##### resampling and rolling 
+##### example we shall split a hourly interval day in six hour intervals and get the mean temp for each interval using the .resample() and .mean() func
+#
+conversion = temp.resample(rule='6h').mean()
+#####
+#print(conversion)
+
+
+##### rolling-window analysis
+#
+rolling = temp.rolling(window=3).mean()
+#print(rolling)
+#####
+
+
+########## 13. PLOTTING WITH PANDAS DATAFRAMES ##########
+##### how to plot with matplotlib.pyplot
+#
+temp.plot()
+#plt.show()
+#
+# you can chain multiple methods to save the plot figure
+#temp.plot().get_figure().savefig('temperatures.png')
+#####
+
+##### histogram
+# create a histogram from data we passed for job candidates
+#
+df.loc[:, ['py-score', 'total']].plot.hist(bins=5, alpha=0.4)
+#plt.show()
