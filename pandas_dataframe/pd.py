@@ -436,3 +436,9 @@ df_.fillna(value=0)
 #interpolate = df_.interpolate()
 #interpolate
 #####
+
+
+##### in some cases you may want to delete rows and columns with missing data
+#
+#df_.dropna()
+#####
