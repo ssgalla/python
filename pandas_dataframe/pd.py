@@ -90,3 +90,56 @@ n = [[1, 2, 100],
 n_py = pd.DataFrame(n, columns=['x', 'y', 'z'])
 #print(n_py)
 #####
+
+##### creating a pandas datafram with numpy arrays
+##### using this method gives you the option to be able to use the parameter copy - keeping this off allows you to save significant amount of time and processing power when working with large data sets
+#
+arr = np.array([[1, 2, 100],
+               [2, 4, 100],
+               [3, 8, 100]])
+df_ = pd.DataFrame(arr, columns=['x', 'y', 'z'])
+#print(df_)
+#####
+
+
+##### example of parameter copy being False
+##### in this example you can see if we change the array the dataframe also changes whereas if copy is True then it will simply copy the array values rather than using the actual available values
+#
+arr[0, 0] = 1000
+#print(df_)
+#####
+
+
+##### creating a pandas dataframe from files
+#
+#df.to_csv('data.csv')
+#####
+
+
+##### reading external csv files to panda dataframe
+#
+read_csv = pd.read_csv('data.csv', index_col=0)
+#print(read_csv)
+
+
+##### retrieve dataframes row labels with .index and column labels with .columns - lastly find column name of single column by index
+#
+#print(df.index)
+#print(df.columns)
+#print(df.columns[1])
+#####
+
+
+##### iterate through labels - you may not need this as you can iterate over entire dateframes in pandas 
+#
+#df.index = np.arrange(10, 17)
+#df.index
+#print(df)
+#####
+
+
+##### gathering data as a numpy array
+##### sometimes you want to extract data from  dataframes without its label you can do this by using .to_numpy() or .values:
+#
+#df.to_numpy()
+#####
