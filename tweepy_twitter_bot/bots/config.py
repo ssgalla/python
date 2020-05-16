@@ -9,10 +9,10 @@ logger = logging.getLogger()
 # create twitter api function to be reused across all bots
 def create_api():
     # input twitter api credentials
-    consumer_key = os.getenv("JLKFgAoS1zwP0OfQWWlgHxxWm")
-    consumer_secret = os.getenv("PUs78WIfZvt1c8p3s2RuoAw2amBu1K6nIugy9WFI5xHEDVBKfM")
-    access_token = os.getenv("1261346688884563968-xRNEoQhTJMJ2GjXHPAfvT5Vs8BTyVJ")
-    access_token_secret = os.getenv("9q42pHeji4KyPbYRZuPTiAeXruvavi1lPgPVU0siDooRY")
+    consumer_key = os.getenv("PLEASE ENTER")
+    consumer_secret = os.getenv("PLEASE ENTER")
+    access_token = os.getenv("PLEASE ENTER")
+    access_token_secret = os.getenv("PLEASE ENTER")
 
     # create api request for twitter api
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
