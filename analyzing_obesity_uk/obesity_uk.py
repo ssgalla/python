@@ -1,4 +1,4 @@
-# import panda and matplotlib.pyplot modules
+# import panda, matplotlib.pyplot and numpy modules
 import pandas as pd 
 import matplotlib.pyplot as plt
 import numpy as np
