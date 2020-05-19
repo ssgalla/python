@@ -49,7 +49,7 @@ df = pd.DataFrame(data_province)
 print("Confirmed cases grouped by province:")
 print(df)
 
-##### matplotlib to build analysis data
+##### matplotlib to build analysis data #####
 # building horizontal bar chart to depict most affected province?
 provinces_bar = provinces
 y_pos = np.arange(len(provinces_bar))
