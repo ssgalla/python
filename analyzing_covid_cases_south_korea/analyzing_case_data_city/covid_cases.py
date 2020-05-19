@@ -14,24 +14,30 @@ df.drop(df[df['longitude'] == "-"].index, inplace=True)
 
 # drop information not required for analysis
 df.drop(['group'], axis=1, inplace=True)
-print(df.head(80))
+df.drop(['infection_case'], axis=1, inplace=True)
+df.drop(['latitude'], axis=1, inplace=True)
+df.drop(['longitude'], axis=1, inplace=True)
+#print(df.head(80))
 
-# slicing data: Seoul records
+# slicing data and adding to seperate dataframe with total confirmed cases by province
+#
+# slicing data: Seoul
 df_seoul = df[:8]
-#print("seoul clean data:")
-#print(df_seoul)
+total_seoul = df_seoul['confirmed'].sum()
 
 # slicing data: Busan
 df_busan = df[8:12]
-#print("busan clean data:")
-#print(df_busan)
+total_busan = df_busan['confirmed'].sum()
 
 # slicing data: Daegu
 df_daegu = df[12:17]
-#print("daegu clean data:")
-#print(df_daegu)
+total_daegu = df_daegu['confirmed'].sum()
 
 # slicing data: Daejeon
 df_daejeon = df.iloc[17]
-#print("daejeon clean data:")
-#print(df_daejeon)
+total_daejeon = df_daejeon['confirmed'].sum()
+
+# slicing data: sejong
+df_sejong = df[-2:]
+total_sejong = df_sejong['confirmed'].sum()
+
